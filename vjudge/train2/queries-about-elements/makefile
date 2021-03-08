@@ -15,17 +15,13 @@ OBJECTS = $(SOURCES:%$(SRC_EXT)=$(BUILD_DIR)%$(OBJ_EXT))
 EXEC = main$(APP_EXT)
 
 # Main target
-$(EXEC): $(BUILD_DIR) $(OBJECTS) $(RUN_DIR)
+$(EXEC): $(BUILD_DIR) $(OBJECTS)
 	$(eval LINE_BREAK = \n)
 	$(CC) $(OBJECTS) -o $(EXEC)
 
 # Make the build dir if it doesn't exist
 $(BUILD_DIR):
 	@mkdir $(BUILD_DIR)
-
-# Make the output dir if doesn't exists
-$(RUN_DIR):
-	@mkdir $(RUN_DIR)
 
 # To obtain object files
 $(BUILD_DIR)%.o: %.cpp
