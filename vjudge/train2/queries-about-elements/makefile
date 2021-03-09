@@ -25,15 +25,15 @@ $(BUILD_DIR):
 
 # To obtain object files
 $(BUILD_DIR)%.o: %.cpp
-	@echo "\033[1;37m \t Building" $< "\033[0m"
+	@echo "\033[1;37m \t ### Building" $< "###\n\033[0m"
 	@$(CC) -c $(CC_FLAGS) $< -o $@
  
 # To remove generated files
 clean:
-	@echo "\033[1;37m \n\t Removing executables\n\033[0m"
+	@echo "\033[1;37m \n\t ### Removing executables ###\n\033[0m"
 	@rm -f $(EXEC) $(OBJECTS) *$(OBJ_EXT)
 	@rm -rf $(BUILD_DIR) 
 
 run: $(EXEC)
-	@echo "\033[1;37m $(LINE_BREAK)\t Runing" $(notdir $<) "\033[0m"
+	@echo "\033[1;37m $(LINE_BREAK)\t ### Runing" $(notdir $<) "###\033[0m"
 	@./$(EXEC)
