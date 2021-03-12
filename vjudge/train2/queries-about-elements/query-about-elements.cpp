@@ -7,7 +7,6 @@ vector <int> a;
 vector <int> b;
 
 int main(){
-    vector<int>::iterator itA;
     vector<int>::iterator itB;
 
     cin >> n >> m;
