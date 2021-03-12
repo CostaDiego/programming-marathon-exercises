@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+typedef long long ll;
+const ll N=201000;
 
 int sizeInputLadyChimps = 0;
 int sizeInputQueries = 0;
@@ -9,50 +10,12 @@ vector <int> ladyChimps;
 vector <int> queries;
 
 vector <int>::iterator it;
-vector <int>::iterator center;
+vector <int>::iterator smaller;
+vector <int>::iterator bigger;
 
-int main(){
-
-    cin >> sizeInputLadyChimps;
-
-    int temp = 0;
-    for(int i = 0; i < sizeInputLadyChimps; i++){
-        cin >> temp;
-        ladyChimps.push_back(temp);
-    }
-
-    cin >> sizeInputQueries;
-
-    temp = 0;
-    for (int i = 0; i <sizeInputQueries; i++){
-        cin >> temp;
-        queries.push_back(temp);
-    }
-
-    for(it = queries.begin(); it < queries.end(); it++){
-        center = lower_bound(ladyChimps.begin(), ladyChimps.end(),*it);
-        
-        if (center - 1 == ladyChimps.begin()){
-            cout << 'X'<<  ' ';
-        }else{
-            cout << *(center-1) << ' ';
-        }
-        while(center <= ladyChimps.end()){
-            if (*center <= *it){
-                center++;
-            }else{
-                cout << *center << endl;
-                break;
-            }
-
-            if(center == ladyChimps.end()){
-                cout << 'X' << endl;
-                break;
-            }
-        }
-
-
-    }
+int32_t main(){
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
 
     return 0;
 }
