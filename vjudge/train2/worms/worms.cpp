@@ -3,28 +3,6 @@ using namespace std;
 typedef long long ll;
 const ll N=201000;
 
-int binarySearch(vector <int> v, int key){
-    int left = 0;
-    int right = v.size() - 1;
-    int center;
-
-    while (left <= right){
-        center = (left + right) >> 1;
-
-        if (left == right){
-            return center;
-        }
-
-        if(v[center] < key){
-            left = center + 1;
-
-        }else{
-            right = center;
-        }
-    }
-    return -1;
-}
-
 int32_t main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
@@ -48,9 +26,27 @@ int32_t main(){
     for(int i = 0; i < numbJuicy; i++){
         cin >> juicyWorms[i];
     }
-    
-    for (int i = 0; i < juicyWorms.size(); i++){
-        cout << binarySearch(worms, juicyWorms[i]) + 1 << endl;
+
+    for (int i = 0; i < numbJuicy; i++){
+        int left = 0;
+        int right = numbPiles;
+        int center;
+
+        while (left <= right){
+            center = (left + right) >> 1;
+
+            if (left == right){
+                cout << center + 1 << endl;
+                break;
+            }
+
+            if(worms[center] < juicyWorms[i]){
+                left = center + 1;
+
+            }else{
+                right = center;
+            }
+        }
     }
 
     return 0;
