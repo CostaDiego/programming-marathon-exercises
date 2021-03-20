@@ -12,27 +12,29 @@ int32_t main(){
 
     cin >> numHotels >> target;
 
-    vector <int> listHotels(numHotels);
+    vector <ll> listHotels(numHotels);
 
     for(size_t i = 0; i < numHotels; i++){
         cin >> listHotels[i];
     }
 
-    int result = listHotels[0];
+    ll result = 0;
+    vector<ll>::iterator itI = listHotels.begin();
+    vector<ll>::iterator itJ;
 
-    for(size_t i = 0;i < numHotels; i++){
-        int resultLoop = listHotels[i];
-        for(size_t j = i + 1; j < numHotels; j++){
-            if((resultLoop + listHotels[j]) <= target){
-                resultLoop += listHotels[j];
+    while(itI != listHotels.end()) {
+        ll resultLoop = *itI;
+        itJ = itI + 1;
+        while(itJ != listHotels.end()){
+            if(resultLoop + *itJ<= target){
+                resultLoop += *itJ;
+                ++itJ;
             }else{
                 break;
             }
         }
-
-        if(resultLoop > result){
-            result = resultLoop;
-        }
+        if(resultLoop > result) result = resultLoop;
+        ++itI;
     }
 
     cout << result << endl;
