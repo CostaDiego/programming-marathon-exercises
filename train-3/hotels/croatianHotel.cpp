@@ -18,24 +18,22 @@ int32_t main(){
         cin >> listHotels[i];
     }
 
-    ll result = 0;
-    vector<ll>::iterator itI = listHotels.begin();
-    vector<ll>::iterator itJ;
+    ll result = 0, acum = 0, i = 0, j = 0;
 
-    while(itI != listHotels.end()) {
-        ll resultLoop = *itI;
-        itJ = itI + 1;
-        while(itJ != listHotels.end()){
-            if(resultLoop + *itJ<= target){
-                resultLoop += *itJ;
-                ++itJ;
-            }else{
-                break;
-            }
+    while (i < numHotels || j < numHotels){
+        if(acum <= target && j < numHotels){
+            acum += listHotels[j];
+            j++;
+        }else{
+            acum -= listHotels[i];
+            i++;
         }
-        if(resultLoop > result) result = resultLoop;
-        ++itI;
+
+        if(acum > result && acum <= target){
+            result = acum;
+        }
     }
+    
 
     cout << result << endl;
 
