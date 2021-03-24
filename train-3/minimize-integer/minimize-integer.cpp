@@ -5,6 +5,31 @@ const ll N=201000;
 
 int query = 0;
 
+int getIndice(string &number, int index, bool even){
+    if(index == -1) return -1;
+
+    if(even){
+        while (number[index])
+        {
+            if((int)number[index] % 2 == 0){
+                return index;
+            }
+            index++;
+        }   
+    }else{
+        while (number[index])
+        {
+            if((int)number[index] % 2 != 0){
+                return index;
+            }
+            index++;
+        }
+        
+    }
+
+    return -1;
+}
+
 int32_t main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
@@ -18,38 +43,31 @@ int32_t main(){
     }
 
     for(auto v: input){
-        int i = 0, j = 1;
-        while(v[j]){
-            if(v[i] > v[j]){
-                if(((int)v[i] % 2) != ((int)v[j] % 2)){
-                    char temp = v[i];
-                    v[i] = v[j];
-                    v[j] = temp;
-                    
-                    if(i == 0){
-                        i++;
-                        j++;
-                    }else{
-                        while(i != 0){
-                            i--;
-                            j--;
-                            if(((int)v[i] % 2) != ((int)v[j] % 2) && (v[i] > v[j])){
-                                break;
-                            }
-                        }
-                    }
-                }else{
-                    i++;
-                    j++;
+        int odd = getIndice(v, 0, false);
+        int even = getIndice(v, 0, true);
+        string result = "";
+        while (odd != -1 || even != -1){
+            if(odd == -1 || even == -1){
+                if(odd == -1){
+                    result += v[even];
+                    even = getIndice(v, (even + 1), true);
                 }
-
+                else{
+                    result += v[odd];
+                    odd = getIndice(v, (odd + 1), false);
+                }
             }else{
-                i++;
-                j++;
+                if((int)v[odd] < (int)v[even]){
+                    result += v[odd];
+                    odd = getIndice(v, (odd + 1), false);
+                }else{
+                    result += v[even];
+                    even = getIndice(v, (even + 1), true);
+                }
             }
         }
-
-        cout << v << endl;
+  
+        cout << result << endl;
     }
 
 }
