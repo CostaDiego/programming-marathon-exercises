@@ -18,22 +18,15 @@ int32_t main(){
         cin >> points[i];
     }
 
-    ll result = 0, i = 0, j = 2, dist = 0;
+    ll result = 0, j = 0, dist = 0;
     
-    while (i < numPoints - 2 || j < numPoints){
-        dist = points[j] - points[i];
+    for (size_t i = 0; i < numPoints; i++){
 
-        if (dist <= maxDist){
-            result += j - i - 1;
-        }
-        if(j < numPoints - 1 && dist <= maxDist){
+        while(j < numPoints - 1 && points[j+1] - points[i] <= maxDist){
             j++;
-        }else if(j - i == 2){
-            j++;
-            i++;
-        }else{
-            i++;
         }
+        dist = j - i;
+        result += (dist *(dist - 1))/2;
     }
     cout << result << endl;
 
