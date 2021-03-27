@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define alphabet 26
 string firstLine;
 string secondLine;
 
